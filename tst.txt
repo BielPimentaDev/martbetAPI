@@ -1,0 +1,8 @@
+n de derroas para começar a aposta
+valor = aporte inicial
+
+apos perder -- primeiro martingale e multiplica pelo coeficiente
+ate chegar no 3 martingale
+
+se nao bater espera rodada
+
