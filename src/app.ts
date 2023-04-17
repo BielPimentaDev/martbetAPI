@@ -14,6 +14,7 @@ import {
 } from './botIdManager';
 import process from 'process';
 const port = process.env.PORT || 3000;
+// const port = 3333;
 
 const app = express();
 const cors = require('cors');
@@ -21,6 +22,10 @@ app.use(cors);
 const route = Router();
 
 app.use(express.json());
+console.log(`ola mundo`);
+route.get('/', (req: Request, res: Response) => {
+	return 'MARTBET - API';
+});
 
 route.get('/startBots', (req: Request, res: Response) => {
 	console.log(req.body);
@@ -58,5 +63,3 @@ route.get('/betsHistory', async (req: Request, res: Response) => {
 });
 app.use(route);
 app.listen(port, () => 'server running on port 3333');
-
-// stopAllCurrentBots();
