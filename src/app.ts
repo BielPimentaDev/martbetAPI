@@ -16,7 +16,8 @@ import process from 'process';
 const port = process.env.PORT || 3000;
 
 const app = express();
-
+const cors = require('cors');
+app.use(cors);
 const route = Router();
 
 app.use(express.json());
@@ -45,14 +46,12 @@ route.get('/betsHistory', async (req: Request, res: Response) => {
 		const history = await requestManager.fetchAllHistoryBets();
 		res.json({
 			status: 'sucess',
-
 			history: history,
 		});
 	} catch (error) {
 		console.log(error);
 		res.json({
 			status: 'fail',
-
 			history: history,
 		});
 	}

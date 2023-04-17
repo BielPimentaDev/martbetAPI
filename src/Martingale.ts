@@ -5,7 +5,7 @@ const schedule = require('node-schedule');
 import { v4 as uuidv4 } from 'uuid';
 
 export async function sleep(ms: number) {
-	return await new Promise((resolve) => setTimeout(resolve, ms));
+	return await new Promise((resolve) => setTimeout(resolve, ms)); 
 }
 
 export class Martingale {
@@ -22,7 +22,6 @@ export class Martingale {
 	timeToWait: number;
 	botId: string;
 	botsToStopList: string[];
-
 	constructor(initialParams: IBotParams, botId: string) {
 		this.botId = botId;
 		this.gameMode = initialParams.game.gameMode;
@@ -37,11 +36,9 @@ export class Martingale {
 		this.requestsManager = new RequestManager();
 		this.start();
 	}
-
 	async start() {
 		await this.initialize();
 	}
-
 	async initialize() {
 		const botsList = await botsToStopList();
 		this.botsToStopList = botsList;
@@ -52,7 +49,6 @@ export class Martingale {
 		while (true) {
 			const botsList = await botsToStopList();
 			this.botsToStopList = botsList;
-
 			if (botsList.includes(this.botId)) {
 				console.log(`bot id ${this.botId} encerrado`);
 				break;
@@ -63,10 +59,10 @@ export class Martingale {
 				this.remakeBot();
 				break;
 			}
+
 			this.numberOfMatchs -= 1;
 			await this.requestsManager.fetchSnapShot(this.gameMode);
 			await this.waitUntilTheMatchBegin();
-
 			if (this.lastBetId) {
 				const report = await this.requestsManager.fetchHistoryBet(
 					this.lastBetId
