@@ -5,6 +5,7 @@ import express from 'express';
 import { Router, Request, Response } from 'express';
 import { Martbet } from './Martbet';
 import RequestManager from './RequestManager';
+import cors from 'cors';
 import { v4 as uuidv4 } from 'uuid';
 import {
 	botsToStopList,
@@ -14,20 +15,19 @@ import {
 } from './botIdManager';
 import process from 'process';
 const port = process.env.PORT || 3000;
-// const port = 3333;
-
+// const port = 3000;
 const app = express();
-const cors = require('cors');
-app.use(cors);
 const route = Router();
 
+app.use(cors());
+
 app.use(express.json());
-console.log(`ola mundo`);
+
 route.get('/', (req: Request, res: Response) => {
-	return 'MARTBET - API';
+	res.send('MARTBET - API');
 });
 
-route.get('/startBots', (req: Request, res: Response) => {
+route.post('/startBots', (req: Request, res: Response) => {
 	console.log(req.body);
 	const martbet = new Martbet(req.body);
 	res.json({
@@ -46,6 +46,7 @@ route.get('/stopAllBots', (req: Request, res: Response) => {
 });
 
 route.get('/betsHistory', async (req: Request, res: Response) => {
+	console.log(` teste`);
 	const requestManager = new RequestManager();
 	try {
 		const history = await requestManager.fetchAllHistoryBets();
@@ -61,5 +62,6 @@ route.get('/betsHistory', async (req: Request, res: Response) => {
 		});
 	}
 });
+
 app.use(route);
-app.listen(port, () => 'server running on port 3333');
+app.listen(port, () => console.log(`Example app listening on port ${port}`));
