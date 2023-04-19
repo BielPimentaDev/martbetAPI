@@ -100,7 +100,7 @@ export default class RequestManager {
 			);
 			const historyDataObject = convert2JSON(res.data);
 			const historyItems = historyDataObject.betHistory.betHistoryItem;
-
+			console.log(historyItems);
 			historyItems.map((element) => {
 				betsHistory.push({
 					betId: element.betId._text,
