@@ -14,8 +14,8 @@ import {
 	writeBotId,
 } from './botIdManager';
 import process from 'process';
-// const port = process.env.PORT || 3000;
-const port = 3000;
+const port = process.env.PORT || 3000;
+// const port = 3000;
 const app = express();
 const route = Router();
 
