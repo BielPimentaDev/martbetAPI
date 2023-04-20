@@ -18,9 +18,9 @@ const port = process.env.PORT || 3000;
 // const port = 3000;
 const app = express();
 const route = Router();
-// teste
-app.use(cors());
 
+app.use(cors());
+// t
 app.use(express.json());
 
 route.get('/', (req: Request, res: Response) => {
